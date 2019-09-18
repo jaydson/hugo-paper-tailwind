@@ -19,7 +19,28 @@
     </ul>
     {{ end }}
   </footer>
+  <div>
+    {{ if .Params.tweet }}
+      <a href="{{ .Params.tweet_url }}">
+        <img alt="Post imported from Twitter" title="Post imported from Twitter" src="/images/from-twitter.png">
+        <span><i>Este texto foi originalmente postado no Twitter e convertido para o blog</i></span>
+      </a>
+    {{ end }}
+  </div>
+  <br/>
+  <div>
+    {{ $related := .Site.RegularPages.Related . | first 5 }}
+    {{ with $related }}
+    <h3>Conteúdo relacionado</h3>
+    <ul>
+      {{ range . }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+    {{ end }}
+  </div>
 </article>
+
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js" data-no-instant></script>
 <script data-no-instant>
   hljs.initHighlightingOnLoad();
